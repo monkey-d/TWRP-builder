@@ -89,12 +89,9 @@ jobs:
         sudo ln -sf /lib/x86_64-linux-gnu/libncurses.so.6 /lib/x86_64-linux-gnu/libncurses.so.5 2>/dev/null || true
         sudo ln -sf /lib/x86_64-linux-gnu/libncurses.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5 2>/dev/null || true
         sudo ldconfig
-
-     - name: Install Python 2 for legacy scripts
-       run: |
-         sudo apt-get update
-         sudo apt-get install -y python2 || sudo apt-get install -y python
-         sudo ln -sf /usr/bin/python2 /usr/bin/python 2>/dev/null || true
+        sudo apt-get update
+        sudo apt-get install -y python2 || sudo apt-get install -y python
+        sudo ln -sf /usr/bin/python2 /usr/bin/python 2>/dev/null || true
 
     - name: Install OpenJDK
       uses: actions/setup-java@v4
