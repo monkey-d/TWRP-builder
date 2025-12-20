@@ -82,11 +82,12 @@ jobs:
             build-essential libgtk-3-dev libglu1-mesa-dev freeglut3-dev git libxml2 lzop pngcrush schedtool squashfs-tools \
             imagemagick libbz2-dev lzma ncftp qemu-user-static libstdc++-10-dev libncurses6 python3 tar
 
-    - name: Fix Legacy Toolchain Dependencies
+    - name: Fix Legacy Toolchain Dependencies for Ubuntu 24.04
       run: |
-        sudo apt-get update && sudo apt-get install -y libtinfo5 libncurses5
-        sudo ln -sf /lib/x86_64-linux-gnu/libtinfo.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5 2>/dev/null || true
+        sudo apt-get update
+        sudo apt-get install -y libncurses6 libncurses-dev
         sudo ln -sf /lib/x86_64-linux-gnu/libncurses.so.6 /lib/x86_64-linux-gnu/libncurses.so.5 2>/dev/null || true
+        sudo ln -sf /lib/x86_64-linux-gnu/libncurses.so.6 /lib/x86_64-linux-gnu/libtinfo.so.5 2>/dev/null || true
         sudo ldconfig
 
     - name: Install OpenJDK
